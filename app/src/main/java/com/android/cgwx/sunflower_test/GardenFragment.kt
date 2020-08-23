@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.android.cgwx.sunflower_test.databinding.FragmentGardenBinding
+import com.android.cgwx.sunflower_test.utilities.InjectorUtils
 import com.android.cgwx.sunflower_test.viewmodels.GardenPlantingListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +27,7 @@ class GardenFragment : Fragment() {
     private var param2: String? = null
     private lateinit var binding: FragmentGardenBinding
     private val viewModel: GardenPlantingListViewModel by viewModels {
-
+        InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +44,23 @@ class GardenFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentGardenBinding.inflate(inflater, container, false)
+        subscribeUI()
         return binding.root
     }
 
     private fun subscribeUI(){
-
+        viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner){result ->
+            binding.hasPlantings = !result.isNullOrEmpty()
+        }
     }
 }
+
+//private val viewModel: GardenPlantingListViewModel by viewModels {
+//        InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())
+//    }
+//private fun subscribeUi(adapter: GardenPlantingAdapter, binding: FragmentGardenBinding) {
+//        viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner) { result ->
+//            binding.hasPlantings = !result.isNullOrEmpty()
+//            adapter.submitList(result)
+//        }
+//    }
