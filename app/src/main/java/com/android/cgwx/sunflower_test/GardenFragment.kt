@@ -44,23 +44,13 @@ class GardenFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentGardenBinding.inflate(inflater, container, false)
-        subscribeUI()
+        subscribeUI(binding)
         return binding.root
     }
 
-    private fun subscribeUI(){
+    private fun subscribeUI(binding: FragmentGardenBinding){
         viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner){result ->
-            binding.hasPlantings = !result.isNullOrEmpty()
+            binding.hp = !result.isNullOrEmpty()
         }
     }
 }
-
-//private val viewModel: GardenPlantingListViewModel by viewModels {
-//        InjectorUtils.provideGardenPlantingListViewModelFactory(requireContext())
-//    }
-//private fun subscribeUi(adapter: GardenPlantingAdapter, binding: FragmentGardenBinding) {
-//        viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner) { result ->
-//            binding.hasPlantings = !result.isNullOrEmpty()
-//            adapter.submitList(result)
-//        }
-//    }
