@@ -13,10 +13,15 @@ object InjectorUtils{
     }
 
     fun getGardenPlantingRepository(context: Context):GardenPlantingRepository{
+        val tempContext = context.applicationContext
+        val appDatabase = AppDatabase.getInstance(tempContext)
+        val gardenPlantingDao = appDatabase.gardenPlantingDao()
+        var gardenPlantingRepository = GardenPlantingRepository.getInstance(gardenPlantingDao)
         return GardenPlantingRepository.getInstance(AppDatabase.getInstance(context.applicationContext).gardenPlantingDao())
     }
 
     fun provideGardenPlantingListViewModelFactory(context: Context): GardenPlantingListViewModelFactory{
+        var gardenPlantingListViewModelFactory = GardenPlantingListViewModelFactory(getGardenPlantingRepository(context))
         return GardenPlantingListViewModelFactory(getGardenPlantingRepository(context))
     }
 }

@@ -3,7 +3,7 @@ package com.android.cgwx.sunflower_test.data
 class GardenPlantingRepository private constructor(
     private val gardenPlantingDao: GardenPlantingDao
 ){
-    fun getPlantedGardens() = gardenPlantingDao.getPlantenGardens()
+    fun getPlantedGardens() = gardenPlantingDao.getPlantedGardens()
 
     companion object {
         private var instance: GardenPlantingRepository?= null

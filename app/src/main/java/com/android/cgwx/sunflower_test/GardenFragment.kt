@@ -44,6 +44,7 @@ class GardenFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentGardenBinding.inflate(inflater, container, false)
+        viewModel
         subscribeUI(binding)
         return binding.root
     }

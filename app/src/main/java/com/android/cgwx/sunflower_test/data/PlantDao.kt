@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 
 @Dao
 interface PlantDao{
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(plants: List<Plant>)
 }

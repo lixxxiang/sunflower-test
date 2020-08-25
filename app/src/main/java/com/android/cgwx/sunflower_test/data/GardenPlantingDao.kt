@@ -10,5 +10,5 @@ interface GardenPlantingDao{
 
     @Transaction
     @Query("SELECT * FROM plants WHERE id IN (SELECT DISTINCT(plant_id) FROM garden_plantings)")
-    fun getPlantenGardens():LiveData<List<PlantAndGardenPlantings>>
+    fun getPlantedGardens(): LiveData<List<PlantAndGardenPlantings>>
 }
