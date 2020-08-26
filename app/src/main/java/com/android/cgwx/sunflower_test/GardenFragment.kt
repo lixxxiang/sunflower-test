@@ -51,7 +51,7 @@ class GardenFragment : Fragment() {
 
     private fun subscribeUI(binding: FragmentGardenBinding){
         viewModel.plantAndGardenPlantings.observe(viewLifecycleOwner){result ->
-            binding.hp = !result.isNullOrEmpty()
+            binding.hp = (!result.isNullOrEmpty()).toString()
         }
     }
 }

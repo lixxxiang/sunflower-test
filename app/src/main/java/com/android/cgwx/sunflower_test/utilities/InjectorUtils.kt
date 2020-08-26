@@ -1,10 +1,12 @@
 package com.android.cgwx.sunflower_test.utilities
 
 import android.content.Context
+import androidx.fragment.app.Fragment
 import com.android.cgwx.sunflower_test.data.AppDatabase
 import com.android.cgwx.sunflower_test.data.GardenPlantingRepository
 import com.android.cgwx.sunflower_test.data.PlantRepository
 import com.android.cgwx.sunflower_test.viewmodels.GardenPlantingListViewModelFactory
+import com.android.cgwx.sunflower_test.viewmodels.PlantListViewModelFactory
 
 object InjectorUtils{
 
@@ -23,6 +25,10 @@ object InjectorUtils{
     fun provideGardenPlantingListViewModelFactory(context: Context): GardenPlantingListViewModelFactory{
         var gardenPlantingListViewModelFactory = GardenPlantingListViewModelFactory(getGardenPlantingRepository(context))
         return GardenPlantingListViewModelFactory(getGardenPlantingRepository(context))
+    }
+
+    fun providePlantListViewModelFactory(fragment: Fragment): PlantListViewModelFactory{
+        return PlantListViewModelFactory(getPlantRepository(fragment.requireContext()),fragment)
     }
 }
 

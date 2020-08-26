@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import com.android.cgwx.sunflower_test.adapter.PlantAdapter
 import com.android.cgwx.sunflower_test.databinding.FragmentPlantListBinding
+import com.android.cgwx.sunflower_test.utilities.InjectorUtils
+import com.android.cgwx.sunflower_test.viewmodels.PlantListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,14 +35,23 @@ class PlantListFragment : Fragment() {
         }
     }
 
+    private val viewModel: PlantListViewModel by viewModels {
+        InjectorUtils.providePlantListViewModelFactory(this)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentPlantListBinding.inflate(inflater, container, false)
-
+        val adapter = PlantAdapter()
+        binding.plantList.adapter = adapter
+        subscribeUi(adapter)
         return binding.root
+    }
+
+    fun subscribeUi(adapter: PlantAdapter){
+        viewModel.
     }
 
     companion object {
