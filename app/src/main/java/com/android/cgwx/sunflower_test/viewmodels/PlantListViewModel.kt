@@ -14,7 +14,11 @@ class PlantListViewModel(
     val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     val plants: LiveData<List<Plant>> = getSavedGrowZoneNumber().switchMap {
-
+        if (it == NO_GROW_ZONE){
+            plantRepository.getPlants()
+        }else{
+            plantRepository.getPlantsWithGrowZoneNumber(it)
+        }
     }
 
     private fun getSavedGrowZoneNumber(): MutableLiveData<Int> {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.observe
 import com.android.cgwx.sunflower_test.adapter.PlantAdapter
 import com.android.cgwx.sunflower_test.databinding.FragmentPlantListBinding
 import com.android.cgwx.sunflower_test.utilities.InjectorUtils
@@ -44,6 +45,7 @@ class PlantListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding = FragmentPlantListBinding.inflate(inflater, container, false)
+        context ?: return binding.root
         val adapter = PlantAdapter()
         binding.plantList.adapter = adapter
         subscribeUi(adapter)
@@ -51,7 +53,9 @@ class PlantListFragment : Fragment() {
     }
 
     fun subscribeUi(adapter: PlantAdapter){
-        viewModel.
+        viewModel.plants.observe(viewLifecycleOwner) {
+            plants -> adapter.submitList(plants)
+        }
     }
 
     companion object {

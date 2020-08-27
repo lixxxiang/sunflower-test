@@ -2,9 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable
-            name="clickListener"
-            type="android.view.View.OnClickListener"/>
+<!--        <variable-->
+<!--            name="clickListener"-->
+<!--            type="android.view.View.OnClickListener"/>-->
+        <import type="android.view.View" />
         <variable
             name="plant"
             type="com.android.cgwx.sunflower_test.data.Plant"/>
@@ -20,7 +21,6 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:imageFromUrl="@{plant.imageUrl}"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/plant_item_image"/>
             <TextView

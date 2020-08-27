@@ -2,7 +2,9 @@ package com.android.cgwx.sunflower_test.adapter
 
 import android.text.Layout
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -24,9 +26,22 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
         private val binding: ListItemPlantBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.setClickListener {
+//            binding.setClickListener {
+//                binding.plant?.let { plant ->
+//                    navigateToPlant(plant, it)
+//                }
+//            }
+        }
 
-            }
+        private fun navigateToPlant(
+            plant: Plant,
+            view: View
+        ) {
+//            val direction =
+//                HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(
+//                    plant.plantId
+//                )
+//            view.findNavController().navigate(direction)
         }
 
         fun bind(item: Plant){
