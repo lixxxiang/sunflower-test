@@ -1,20 +1,29 @@
 package com.android.cgwx.sunflower_test.utilities
 
 import android.content.Context
+import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Transformations
 import com.android.cgwx.sunflower_test.data.AppDatabase
 import com.android.cgwx.sunflower_test.data.GardenPlantingRepository
 import com.android.cgwx.sunflower_test.data.PlantRepository
 import com.android.cgwx.sunflower_test.viewmodels.GardenPlantingListViewModelFactory
 import com.android.cgwx.sunflower_test.viewmodels.PlantListViewModelFactory
 
+
 object InjectorUtils{
 
     fun getPlantRepository(context: Context):PlantRepository{
+        Log.d("TAG", "getPlantRepository")
+        val instance = AppDatabase.getInstance(context).plantDao().getPlants().value
+//        Log.d("TAG",instance.getPlants())
+//            instance.getPlants().value
         return PlantRepository.getInstance(AppDatabase.getInstance(context).plantDao())
     }
 
     fun getGardenPlantingRepository(context: Context):GardenPlantingRepository{
+        Log.d("TAG", "getGardenPlantingRepository")
+
         val tempContext = context.applicationContext
         val appDatabase = AppDatabase.getInstance(tempContext)
         val gardenPlantingDao = appDatabase.gardenPlantingDao()

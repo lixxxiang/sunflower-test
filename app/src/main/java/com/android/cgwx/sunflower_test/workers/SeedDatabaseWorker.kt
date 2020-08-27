@@ -1,6 +1,7 @@
 package com.android.cgwx.sunflower_test.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.android.cgwx.sunflower_test.data.AppDatabase
@@ -18,12 +19,15 @@ class SeedDatabaseWorker(
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
         try {
+            Log.d("TAG","???")
             applicationContext.assets.open(PLANT_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
+                    Log.d("TAG","ININ")
                     val plantType = object : TypeToken<List<Plant>>() {}.type
                     val plantList: List<Plant> = Gson().fromJson(jsonReader, plantType)
                     val database = AppDatabase.getInstance(applicationContext)
                     database.plantDao().insertAll(plantList)
+                    var s = database.plantDao().getPlants().value
                     Result.success()
                 }
             }
