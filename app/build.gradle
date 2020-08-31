@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion 29
@@ -18,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "UNSPLASH_ACCESS_KEY", "\"" + getUnsplashAccess() + "\"")
+
     }
 
     buildTypes {
@@ -79,4 +82,8 @@ dependencies {
 //    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
 //    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+}
+
+def getUnsplashAccess() {
+    return project.findProperty("unsplash_access_key")
 }

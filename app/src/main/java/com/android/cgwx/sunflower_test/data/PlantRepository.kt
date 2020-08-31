@@ -16,6 +16,10 @@ class PlantRepository private constructor(private val plantDao: PlantDao) {
         return plantDao.getPlants()
     }
 
+    fun getPlant(plantId: String): LiveData<Plant>{
+        return plantDao.getPlant(plantId)
+    }
+
     fun getPlantsWithGrowZoneNumber(growZoneNumber: Int): LiveData<List<Plant>> {
         return plantDao.getPlantsWithGrowZoneNumber(growZoneNumber)
     }

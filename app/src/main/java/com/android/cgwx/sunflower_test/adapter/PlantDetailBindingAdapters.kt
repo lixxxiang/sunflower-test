@@ -21,11 +21,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
-import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.databinding.BindingAdapter
+import com.android.cgwx.sunflower_test.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
@@ -46,6 +45,24 @@ fun bindIsGone(view: View, isGone: Boolean) {
     }
 }
 
+@BindingAdapter("wateringText")
+fun bindWateringText(textView: TextView, wateringInterval: Int) {
+    textView.text = textView.context.resources.getQuantityString(
+        R.plurals.watering_needs_suffix,
+        wateringInterval,
+        wateringInterval
+    )
+}
+
+@BindingAdapter("renderHtml")
+fun bindRenderHtml(view: TextView, description: String?) {
+    if (description != null) {
+        view.text = HtmlCompat.fromHtml(description, HtmlCompat.FROM_HTML_MODE_COMPACT)
+        view.movementMethod = LinkMovementMethod.getInstance()
+    }else{
+        view.text = ""
+    }
+}
 //@BindingAdapter("isFabGone")
 //fun bindIsFabGone(view: FloatingActionButton, isGone: Boolean?) {
 //    if (isGone == null || isGone) {

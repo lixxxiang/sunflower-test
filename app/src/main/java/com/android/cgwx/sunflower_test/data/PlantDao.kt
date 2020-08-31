@@ -13,9 +13,12 @@ interface PlantDao{
     suspend fun insertAll(plants: List<Plant>)
 
     @Query("SELECT * FROM plants ORDER BY name")
-    fun getPlants():LiveData<List<Plant>>
+    fun getPlants(): LiveData<List<Plant>>
 
     @Query("SELECT * FROM plants WHERE growZoneNumber = :growZoneNumber ORDER BY name")
     fun getPlantsWithGrowZoneNumber(growZoneNumber: Int): LiveData<List<Plant>>
+
+    @Query("SELECT * FROM plants WHERE id = :plantId")
+    fun getPlant(plantId: String): LiveData<Plant>
 
 }

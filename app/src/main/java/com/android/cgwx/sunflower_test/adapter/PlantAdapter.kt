@@ -1,6 +1,5 @@
 package com.android.cgwx.sunflower_test.adapter
 
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.android.cgwx.sunflower_test.HomeViewPagerFragmentDirections
 import com.android.cgwx.sunflower_test.data.Plant
-import com.android.cgwx.sunflower_test.databinding.FragmentGardenBinding
 import com.android.cgwx.sunflower_test.databinding.ListItemPlantBinding
 
 class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallback()) {
@@ -27,22 +26,15 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
         private val binding: ListItemPlantBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
-//            binding.setClickListener {
-//                binding.plant?.let { plant ->
-//                    navigateToPlant(plant, it)
-//                }
-//            }
+            binding.setClickListener { it ->
+                binding.plant.let { it2 ->
+                    navigateToPlant(it2!!, it)
+                }
+            }
         }
 
-        private fun navigateToPlant(
-            plant: Plant,
-            view: View
-        ) {
-//            val direction =
-//                HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(
-//                    plant.plantId
-//                )
-//            view.findNavController().navigate(direction)
+        private fun navigateToPlant(plant: Plant, view: View){
+            view.findNavController().navigate(HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(plant.plantId))
         }
 
         fun bind(item: Plant){
