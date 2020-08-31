@@ -20,8 +20,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="hp"
-            type="java.lang.String" />
+            name="hasPlantings"
+            type="java.lang.Boolean" />
     </data>
 
     <FrameLayout
@@ -32,8 +32,13 @@
             android:id="@+id/garden_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:isGone="@{!hasPlantings}"
             android:clipToPadding="false"
+            android:layout_marginStart="@dimen/card_side_margin"
+            android:layout_marginEnd="@dimen/card_side_margin"
+            android:layout_marginTop="@dimen/margin_normal"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="@integer/grid_columns"
            />
 
         <LinearLayout
@@ -46,7 +51,7 @@
                 android:id="@+id/empty_garden"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{hp}"
+                app:isGone="@{!hasPlantings}"
                 android:textAppearance="?attr/textAppearanceHeadline5" />
 
             <com.google.android.material.button.MaterialButton

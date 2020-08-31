@@ -5,6 +5,10 @@ class GardenPlantingRepository private constructor(
 ){
     fun getPlantedGardens() = gardenPlantingDao.getPlantedGardens()
 
+    fun isPlanted(plantId: String) = gardenPlantingDao.isPlanted(plantId)
+
+
+
     companion object {
         private var instance: GardenPlantingRepository?= null
         fun getInstance(gardenPlantingDao: GardenPlantingDao) =

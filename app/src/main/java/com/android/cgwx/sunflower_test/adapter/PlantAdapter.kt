@@ -1,6 +1,7 @@
 package com.android.cgwx.sunflower_test.adapter
 
 import android.text.Layout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class PlantAdapter : ListAdapter<Plant, RecyclerView.ViewHolder>(PlantDiffCallba
         fun bind(item: Plant){
             binding.apply {
                 plant = item
+                Log.d("TAG", (plant as Plant).imageUrl)
                 executePendingBindings()
             }
         }

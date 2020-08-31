@@ -8,6 +8,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingEnd="@dimen/card_side_margin"
+            android:paddingStart="@dimen/card_side_margin"
+            android:paddingTop="@dimen/header_margin"
             tools:listitem="@layout/list_item_plant"
             app:spanCount="@integer/grid_columns"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"

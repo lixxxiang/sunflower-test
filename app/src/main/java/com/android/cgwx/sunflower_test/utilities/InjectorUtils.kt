@@ -8,6 +8,7 @@ import com.android.cgwx.sunflower_test.data.AppDatabase
 import com.android.cgwx.sunflower_test.data.GardenPlantingRepository
 import com.android.cgwx.sunflower_test.data.PlantRepository
 import com.android.cgwx.sunflower_test.viewmodels.GardenPlantingListViewModelFactory
+import com.android.cgwx.sunflower_test.viewmodels.PlantDetailViewModelFactory
 import com.android.cgwx.sunflower_test.viewmodels.PlantListViewModelFactory
 
 
@@ -38,6 +39,13 @@ object InjectorUtils{
 
     fun providePlantListViewModelFactory(fragment: Fragment): PlantListViewModelFactory{
         return PlantListViewModelFactory(getPlantRepository(fragment.requireContext()),fragment)
+    }
+
+    fun providePlantDetailViewModelFactory(
+        context: Context,
+        plantId: String
+    ):PlantDetailViewModelFactory{
+        return PlantDetailViewModelFactory(getGardenPlantingRepository(context), plantId)
     }
 }
 
